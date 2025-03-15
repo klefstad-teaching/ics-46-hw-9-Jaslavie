@@ -60,7 +60,7 @@ void print_path(const vector<int>& v, int total){
     // print all vertices in path
     for (size_t i = 0; i < v.size(); ++i) {
         cout << v[i];
-        if (i < v.size() - 1) cout << " "; // space between each vertex
+        if (i < v.size()) cout << " "; // space between each vertex
     }
     cout << endl;
     cout << "Total cost is " << total << endl;
