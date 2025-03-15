@@ -7,7 +7,6 @@ const int UNDEFINED = -1;
 vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& previous){
     int numVertices = G.size();
     vector<int> distances(numVertices, INF);
-    vector<bool> visited(numVertices);
 
     // init source node
     distances[source] = 0; // set distance of source to 0 (source->source is 0)
@@ -15,25 +14,26 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 
     // create min heap priority queue of vertices based on ascending weights
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap; // pair<vertex, weight>
-    minHeap.push({source, 0});
+    minHeap.push({0, source});
 
     // loop through all vertices and update place in queue
     while(!minHeap.empty()) {
-        int u = minHeap.top().first; // get vertex with minimum and first element from the pair (vertex)
+        int u = minHeap.top().second; // get vertex with minimum and first element from the pair (vertex)
+        int dist = minHeap.top().first;
         minHeap.pop();
+
+        // Skip if we've already found a better path
+        if(dist > distances[u]) continue;
         
-        if (visited[u]) continue;
-        visited[u] = true;
-        // find next neighbor edges of u to traverse
-        for (Edge edge : G[u]) {
+        // Process all edges from u
+        for(const Edge& edge : G[u]){
             int v = edge.dst;
             int weight = edge.weight; 
-            // check that the destination node is not visited and a shorter path is found to vertex v
             // distances[u] is the current shortest path known to src
-            if (! visited[v] && distances[u] + weight < distances[v]) {
+            if (distances[u] + weight < distances[v]) {
                 distances[v] = distances[u] + weight; // update  new shortest path to v
                 previous[v] = u;
-                minHeap.push({v, distances[v]});
+                minHeap.push({distances[v], v});
             }
         }
     }
@@ -60,7 +60,7 @@ void print_path(const vector<int>& v, int total){
     // print all vertices in path
     for (size_t i = 0; i < v.size(); ++i) {
         cout << v[i];
-        if (i < v.size()) cout << " "; // space between each vertex
+        if (i < v.size() - 1) cout << " "; // space between each vertex
     }
     cout << endl;
     cout << "Total cost is " << total << endl;
