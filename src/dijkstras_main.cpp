@@ -5,7 +5,7 @@
 int main(){
     Graph G;
     try {
-        file_to_graph("../src/small.txt", G);
+        file_to_graph("small.txt", G);
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
