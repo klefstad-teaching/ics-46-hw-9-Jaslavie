@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -mmacosx-version-min=13.1 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/ladder_main.dir/src/ladder.cpp.o CMakeFiles/ladder_main.dir/src/ladder_main.cpp.o -o ladder_main

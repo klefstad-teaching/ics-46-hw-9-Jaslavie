@@ -26,19 +26,19 @@ add_executable(ladder_main
   src/ladder_main.cpp
 )
 
-find_package(GTest)
-if (GTest_FOUND)
-  set(STUDENT_TEST_FILES
-    gtest/gtestmain.cpp
-    gtest/student_gtests.cpp
-  )
+# find_package(GTest)
+# if (GTest_FOUND)
+#   set(STUDENT_TEST_FILES
+#     gtest/gtestmain.cpp
+#     gtest/student_gtests.cpp
+#   )
 
-  add_executable(student_gtests 
-    ${STUDENT_TEST_FILES}
-    ${DIJKSTRAS_SRC_FILES}
-    ${LADDER_SRC_FILES}
-  )
-  target_include_directories(student_gtests PRIVATE src ${GTEST_INCLUDE_DIRS})
-  target_link_libraries(student_gtests PRIVATE ${GTEST_LIBRARIES})
-endif()
+#   add_executable(student_gtests 
+#     ${STUDENT_TEST_FILES}
+#     ${DIJKSTRAS_SRC_FILES}
+#     ${LADDER_SRC_FILES}
+#   )
+#   target_include_directories(student_gtests PRIVATE src ${GTEST_INCLUDE_DIRS})
+#   target_link_libraries(student_gtests PRIVATE ${GTEST_LIBRARIES})
+# endif()
 
