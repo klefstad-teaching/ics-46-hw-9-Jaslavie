@@ -20,6 +20,8 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     // loop through all vertices and update place in queue
     while(!minHeap.empty()) {
         int u = minHeap.top().first; // get vertex with minimum and first element from the pair (vertex)
+        minHeap.pop();
+        
         if (visited[u]) continue;
         visited[u] = true;
         // find next neighbor edges of u to traverse
