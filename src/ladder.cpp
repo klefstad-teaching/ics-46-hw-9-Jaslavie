@@ -11,7 +11,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
     // check if length distance is greater than d
     if (abs(int(str1.length()) - int(str2.length())) > d) return false;
     // check if strings are the same
-    if (str1 == str2) return false;
+    if (str1 == str2) return d >= 0;
     // check if strings are one letter apart
     if (d==1 || d==0) return is_adjacent(str1, str2); 
     // default case (d > 1)
@@ -29,7 +29,7 @@ bool is_adjacent(const string& word1, const string& word2){
                 if(diff > 1) return false;
             }
         }
-        return diff ==1;
+        return diff <=1; // true if diff is 0 or 1
     }
 
     // check if one word is one letter longer
@@ -96,7 +96,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
             }
         };
     }
-    
+
     cerr << "no ladders found" << endl;
     return vector<string>();
 }   
@@ -113,7 +113,7 @@ void load_words(set<string> & word_list, const string& file_name){
 
 void print_word_ladder(const vector<string>& ladder){
     for (const string& word : ladder)
-        cout << word << endl;
+        cout << word << " ";
 }
 
 // verify that ladder is valid 
