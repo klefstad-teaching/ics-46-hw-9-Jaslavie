@@ -13,8 +13,11 @@ int main(){
     cout << "Enter end word: ";
     cin >> end_word;
     if (begin_word == end_word) error("main", "", "Start and end words are the same");
-
+    
     vector<string> ladder = generate_word_ladder(begin_word, end_word, word_list);
+
+    if(ladder.empty()) error("main", "", "No ladders found");
+    
     verify_word_ladder(ladder, word_list);
     print_word_ladder(ladder);
 

@@ -94,10 +94,9 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
                     ladder_queue.push(new_ladder);
                 }
             }
-            // cerr << "no new ladder found" << endl;
-            // return vector<string>();
         };
     }
+    
     cerr << "no ladders found" << endl;
     return vector<string>();
 }   
